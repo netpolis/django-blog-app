@@ -1,0 +1,57 @@
+
+
+
+
+
+
+<div class="col-lg-8">
+   
+    <br>
+    <form>
+        <input type="text" placeholder="Bir metin giriniz" name="keyword">
+        <button type="submit" class="btn btn-danger">Makale Ara </button>
+      </form>
+      <br>
+   
+   {% for article in articles %}
+    <!-- Featured blog post-->
+    <div class="card mb-4">
+
+        {% if article.article_images %}
+        <img class="card-img-top" style="width:425px;height: 175%;" src="{{article.article_images.url}}" alt="...">
+        {% endif %}
+        
+        <div class="card-body">
+            <h2 class="card-title">{{article.title}}</h2>
+            <div class="small text-muted">{{article.created_date}}</div>
+            <div class="small text-muted">{{article.author.username}} tarafından yayınlandı. </div>
+            <div >
+
+                <p class="card-text">{{article.content|truncatewords:50|safe}}</p>
+            </div>
+                <a class="btn btn-primary" href="article/{{article.id}}">Daha Fazla →</a>           
+        </div>
+       
+       
+        {% empty %}
+        <div class="alert alert-danger">Kayıtlı herhangi bir makale bulunmadı.</div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- Pagination
+    <nav aria-label="Pagination">
+        <hr class="my-0">
+        <ul class="pagination justify-content-center my-4">
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+            <li class="page-item"><a class="page-link" href="#!">2</a></li>
+            <li class="page-item"><a class="page-link" href="#!">3</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+            <li class="page-item"><a class="page-link" href="#!">15</a></li>
+            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+        </ul>
+    </nav>-->
+</div>
